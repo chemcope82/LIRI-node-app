@@ -22,7 +22,7 @@ inquirer.prompt([
                 message: "Please enter an artist or band to search."
             }
         ]).then(function(band){
-            request("https://rest.bandsintown.com/artists/" + band.artist + "/events?app_id=codingbootcamp", function(error, response, body){
+            request("https://rest.bandsintown.com/artists/" + band.artist + "/events?app_id=" + process.env.BANDS_IN_TOWN_ID + "", function(error, response, body){
                 if (!error && response.statusCode === 200) {
                     // console.log(body);
                     console.log("Next Show:")
@@ -77,7 +77,7 @@ inquirer.prompt([
             }
         ]).then(function(response){
             if (response.movie === "") {
-                request("https://www.omdbapi.com/?t=Mr.Nobody&y=&plot=short&apikey=trilogy", function(error, response, body){
+                request("https://www.omdbapi.com/?t=Mr.Nobody&y=&plot=short&apikey=" + process.env.OMDB_API + "", function(error, response, body){
                     console.log("Title: " + JSON. parse(body).Title);
                     console.log("Year of release: " + JSON. parse(body).Year);
                     console.log("IMDB rating: " + JSON. parse(body).imdbRating);
